@@ -1,5 +1,12 @@
 # Prime Sieve Benchmark
 
+| **Component** | **Specification**        |
+|---------------|--------------------------|
+| **CPU**       | Intel Core i5-1235U      |
+| **RAM**       | 16GB                     |
+
+![Alt text](.github/example.png)
+
 ## Description
 
 This project is a benchmark for measuring the performance of different prime number finding algorithms. It includes several implementations of the "Sieve of Eratosthenes" algorithm in different programming languages such as C++, Go, C#, Java, and Python. The benchmark runs each implementation multiple times to obtain the average execution time for each, allowing a comparison of performance.

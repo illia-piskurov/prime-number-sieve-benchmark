@@ -1,0 +1,43 @@
+{
+    "num_runs": 5,
+    "commands": [
+        {
+            "label": "C++",
+            "compile": "clang++ -o main.exe main.cpp -O3",
+            "command": "main.exe",
+            "cwd": "./C++"
+        },
+        {
+            "label": "Go",
+            "command": "go run main.go",
+            "cwd": "./Go"
+        },
+        {
+            "label": "C# (Simple)",
+            "command": "dotnet run",
+            "cwd": "./C#/PrimeSieveApp"
+        },
+        {
+            "label": "C# (NativeAOT)",
+            "compile": "dotnet publish -c Release -r win-x64",
+            "command": ".\\bin\\Release\\net8.0\\win-x64\\PrimeSieveApp.exe",
+            "cwd": "./C#/PrimeSieveApp"
+        },
+        {
+            "label": "Java",
+            "compile": "javac PrimeSieve.java",
+            "command": "java PrimeSieve",
+            "cwd": "./Java"
+        },
+        {
+            "label": "Python (Numpy)",
+            "command": "python main_numpy.py",
+            "cwd": "./Python"
+        },
+        {
+            "label": "Python (Simple)",
+            "command": "python main_simple.py",
+            "cwd": "./Python"
+        }
+    ]
+}

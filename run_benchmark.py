@@ -1,8 +1,21 @@
 import subprocess
-import os
 import time
+import json
+from typing import List, Optional, TypedDict
 
-def run_command(command, cwd=None, label="Unknown", num_runs=5):
+
+class Command(TypedDict):
+    label: str
+    compile: Optional[str]
+    command: str
+    cwd: str
+
+class Config(TypedDict):
+    num_runs: int
+    commands: List[Command]
+
+
+def execute_command(label, command, cwd=None, num_runs=5):
     times = []
 
     for _ in range(num_runs):
@@ -30,21 +43,17 @@ def compile(command, cwd=None):
     except Exception as e:
         print(f"Error '{command}': {e}")
 
-base_dir = "./"
-cpp_dir = os.path.join(base_dir, "C++")
-go_dir = os.path.join(base_dir, "Go")
-csharp_dir = os.path.join(base_dir, "C#", "PrimeSieveApp")
-java_dir = os.path.join(base_dir, "Java")
-python_dir = os.path.join(base_dir, "Python")
+def load_commands_from_json(json_file):
+    with open(json_file, 'r') as file:
+        data = json.load(file)
+    return data
 
-compile("clang++ -o main.exe main.cpp -O3", cwd=cpp_dir)
-compile("dotnet publish -c Release -r win-x64", cwd=csharp_dir)
-compile("javac PrimeSieve.java", cwd=java_dir)
 
-run_command("main.exe", cwd=cpp_dir, label="C++")
-run_command("go run main.go", cwd=go_dir, label="Go")
-run_command("dotnet run", cwd=csharp_dir, label="C# (Simple)")
-run_command(".\\bin\\Release\\net8.0\\win-x64\\PrimeSieveApp.exe", cwd=csharp_dir, label="C# (NativeAOT)")
-run_command("java PrimeSieve", cwd=java_dir, label="Java")
-run_command("python main_numpy.py", cwd=python_dir, label="Python (Numpy)")
-run_command("python main_simple.py", cwd=python_dir, label="Python (Simple)")
+config: Config = load_commands_from_json('config.json')
+commands = config['commands']
+num_runs = config['num_runs']
+
+for command in commands:
+    if 'compile' in command:
+        compile(command.get('compile'), cwd=command['cwd'])
+    execute_command(command['label'], command['command'], cwd=command['cwd'], num_runs=num_runs)
