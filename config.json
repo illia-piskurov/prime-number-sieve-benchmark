@@ -38,6 +38,11 @@
             "label": "Python (Simple)",
             "command": "python main_simple.py",
             "cwd": "./Python"
+        },
+        {
+            "label": "NodeJS",
+            "command": "node main.js",
+            "cwd": "./NodeJS"
         }
     ]
 }
