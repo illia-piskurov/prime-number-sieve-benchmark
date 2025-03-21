@@ -8,6 +8,11 @@
             "cwd": "./C++"
         },
         {
+            "label": "Rust",
+            "command": "cargo run --release",
+            "cwd": "./Rust"
+        },
+        {
             "label": "Go",
             "command": "go run main.go",
             "cwd": "./Go"
@@ -30,6 +35,11 @@
             "cwd": "./Java"
         },
         {
+            "label": "NodeJS",
+            "command": "node main.js",
+            "cwd": "./NodeJS"
+        },
+        {
             "label": "Python (Numpy)",
             "command": "python main_numpy.py",
             "cwd": "./Python"
@@ -38,11 +48,6 @@
             "label": "Python (Simple)",
             "command": "python main_simple.py",
             "cwd": "./Python"
-        },
-        {
-            "label": "NodeJS",
-            "command": "node main.js",
-            "cwd": "./NodeJS"
         }
     ]
 }
